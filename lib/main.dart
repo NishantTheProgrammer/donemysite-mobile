@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/screens/auth/login.dart';
 import 'package:mobile/screens/home.dart';
 
 import 'tabs.dart';
@@ -23,6 +24,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
       ),
       home: Tabs(),
+      routes: {
+        Login().routeName: (context) => Login(),
+        Tabs().routeName: (context) => Tabs(),
+      },
     );
   }
 }

@@ -10,6 +10,8 @@ import 'package:mobile/screens/profile.dart';
 class Tabs extends StatefulWidget {
   Tabs({Key? key}) : super(key: key);
 
+  final routeName = 'tabs';
+
   @override
   State<Tabs> createState() => _TabsState();
 }
