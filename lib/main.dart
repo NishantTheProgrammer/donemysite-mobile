@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
+        appBarTheme: AppBarTheme(backgroundColor: Colors.purple),
         primarySwatch: Colors.purple,
       ),
       home: Tabs(),

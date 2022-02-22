@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/models/gig.dart';
 
 class GigCard extends StatelessWidget {
-  String title;
-  int price;
+  final Gig gig;
 
-  GigCard({required this.title, required this.price});
+  GigCard(this.gig);
 
   void _gigDetails() {
     debugPrint('Card tapped.');
@@ -30,9 +30,9 @@ class GigCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.network(
-                'https://ik.imagekit.io/ikmedia/backlit.jpg',
-                // height: 100,
-                fit: BoxFit.fitWidth,
+                gig.photo,
+                height: 120,
+                fit: BoxFit.fitHeight,
               ),
               Padding(
                 padding: const EdgeInsets.all(8),
@@ -40,11 +40,11 @@ class GigCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title,
+                      gig.title,
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
                     Text(
-                      '\$$price',
+                      '\$${gig.price}',
                       style: Theme.of(context).textTheme.headline4,
                     ),
                     Row(

@@ -1,10 +1,31 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:mobile/models/gig.dart';
+import 'package:mobile/providers/gig_provider.dart';
 import 'package:mobile/widgets/gig_card.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
-
   final routeName = 'home';
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List<Gig> gigs = [];
+
+  @override
+  void initState() {
+    fetchGigs().then((gigs) {
+      setState(() {
+        this.gigs = gigs;
+      });
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +37,7 @@ class Home extends StatelessWidget {
         mainAxisSpacing: 4.0,
         childAspectRatio: MediaQuery.of(context).size.width /
             (MediaQuery.of(context).size.height / 1.31),
-        children: List.generate(20, (index) {
-          return GigCard(
-            title:
-                'Find Django and Python permanent, contract and freelance jobs',
-            price: 30,
-          );
-        }),
+        children: gigs.map((gig) => GigCard(gig)).toList(),
       ),
     );
   }
