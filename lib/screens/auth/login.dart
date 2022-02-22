@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/screens/profile.dart';
 import 'package:mobile/tabs.dart';
 
 class Login extends StatefulWidget {
@@ -41,7 +42,7 @@ class _LoginState extends State<Login> {
         ),
       );
       print(payload);
-      Navigator.pushNamed(context, Tabs().routeName);
+      Navigator.pushNamed(context, Profile().routeName);
     }
   }
 

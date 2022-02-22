@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/screens/auth/login.dart';
+import 'package:mobile/screens/chats.dart';
 import 'package:mobile/screens/home.dart';
+import 'package:mobile/screens/orders.dart';
+import 'package:mobile/screens/profile.dart';
 
 import 'tabs.dart';
 
@@ -9,7 +12,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  final routes = {
+    Login().routeName: (context) => Login(),
+    Home().routeName: (context) => Tabs(index: 0),
+    Chats().routeName: (context) => Tabs(index: 1),
+    Orders().routeName: (context) => Tabs(index: 2),
+    Profile().routeName: (context) => Tabs(index: 3),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +35,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
       ),
       home: Tabs(),
-      routes: {
-        Login().routeName: (context) => Login(),
-        Tabs().routeName: (context) => Tabs(),
-      },
+      routes: routes,
     );
   }
 }

@@ -8,7 +8,9 @@ import 'package:mobile/screens/profile.dart';
 // import 'components/custom_tabs.dart';
 
 class Tabs extends StatefulWidget {
-  Tabs({Key? key}) : super(key: key);
+  int index;
+
+  Tabs({this.index = 0});
 
   final routeName = 'tabs';
 
@@ -17,8 +19,6 @@ class Tabs extends StatefulWidget {
 }
 
 class _TabsState extends State<Tabs> {
-  var index = 0;
-
   var screens = [Home(), Chats(), Orders(), Profile()];
 
   @override
@@ -27,7 +27,7 @@ class _TabsState extends State<Tabs> {
       appBar: AppBar(
         title: const Text('DoneMySite'),
       ),
-      body: screens[index],
+      body: screens[widget.index],
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
           iconTheme: IconThemeData(color: Colors.white, size: 25),
@@ -36,7 +36,7 @@ class _TabsState extends State<Tabs> {
           backgroundColor: Colors.transparent,
           animationDuration: Duration(milliseconds: 400),
           height: 60,
-          index: index,
+          index: widget.index,
           color: Theme.of(context).colorScheme.primary,
           items: const <Widget>[
             Icon(Icons.home),
@@ -46,7 +46,7 @@ class _TabsState extends State<Tabs> {
           ],
           onTap: (i) {
             setState(() {
-              index = i;
+              widget.index = i;
             });
           },
         ),
