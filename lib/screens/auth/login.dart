@@ -42,7 +42,8 @@ class _LoginState extends State<Login> {
         ),
       );
       print(payload);
-      Navigator.pushNamed(context, Profile().routeName);
+      Navigator.pushNamedAndRemoveUntil(
+          context, Profile().routeName, (_) => false);
     }
   }
 

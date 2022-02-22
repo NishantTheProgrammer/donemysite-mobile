@@ -26,7 +26,11 @@ class _TabsState extends State<Tabs> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('DoneMySite'),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+        ],
       ),
+      extendBody: true,
       body: screens[widget.index],
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
