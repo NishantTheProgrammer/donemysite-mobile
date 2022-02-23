@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:mobile/models/gig.dart';
-import 'package:mobile/providers/gig_provider.dart';
+import 'package:mobile/providers/gig_provider.dart' as gig_provider;
 import 'package:mobile/widgets/gig_card.dart';
 
 class Home extends StatefulWidget {
@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    fetchGigs().then((gigs) {
+    gig_provider.all().then((gigs) {
       setState(() {
         this.gigs = gigs;
       });

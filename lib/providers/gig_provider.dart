@@ -3,12 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobile/models/gig.dart';
 
-// Future<http.Response> fetchGigs() {
-//   return http.get(
-//       Uri.parse("https://nishanttheprogrammer.pythonanywhere.com/api/gig/"));
-// }
-
-Future<List<Gig>> fetchGigs() async {
+Future<List<Gig>> all() async {
   final response = await http.get(
       Uri.parse('https://nishanttheprogrammer.pythonanywhere.com/api/gig/'));
 
@@ -25,6 +20,6 @@ Future<List<Gig>> fetchGigs() async {
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
-    throw Exception('Failed to load album');
+    throw Exception(jsonDecode(response.body));
   }
 }

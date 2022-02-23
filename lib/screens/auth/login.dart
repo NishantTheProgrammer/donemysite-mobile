@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/providers/auth_provider.dart' as auth_provider;
 import 'package:mobile/screens/profile.dart';
-import 'package:mobile/tabs.dart';
 
 class Login extends StatefulWidget {
   final routeName = 'login';
@@ -29,21 +29,38 @@ class _LoginState extends State<Login> {
     final form = _formKey.currentState;
 
     if (form!.validate()) {
-      final payload = {
-        'username': usernameController.text,
-        'password': passwordController.text
-      };
-      FocusScope.of(context).requestFocus(FocusNode());
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Fake login as ${usernameController.text}'),
-          behavior: SnackBarBehavior.floating,
-          backgroundColor: Colors.green,
-        ),
-      );
-      print(payload);
-      Navigator.pushNamedAndRemoveUntil(
-          context, Profile().routeName, (_) => false);
+      auth_provider
+          .login(
+        username: usernameController.text,
+        password: passwordController.text,
+      )
+          .then((authResponse) {
+        print(authResponse.access);
+
+        FocusScope.of(context).requestFocus(FocusNode());
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Logged in as ${usernameController.text}'),
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Colors.green,
+          ),
+        );
+
+        Navigator.pushNamedAndRemoveUntil(
+            context, Profile().routeName, (_) => false);
+      }).catchError((error, stackTrace) {
+        if ('$error' != '') {
+          FocusScope.of(context).requestFocus(FocusNode());
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('$error'),
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+        throw error;
+      });
     }
   }
 
