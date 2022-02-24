@@ -25,10 +25,6 @@ class _HomeState extends State<Home> {
       });
     });
 
-    storage.read(key: 'access_token').then((accessToken) {
-      print(accessToken);
-    });
-
     super.initState();
   }
 

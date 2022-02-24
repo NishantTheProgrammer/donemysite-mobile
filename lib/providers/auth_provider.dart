@@ -13,9 +13,14 @@ Future<LoginResponse> login(
 
   if (response.statusCode == 200) {
     final body = jsonDecode(response.body);
-    storage.write(key: "access_token", value: body['access']);
+    storage.write(key: "access_token", value: 'JWT ' + body['access']);
     return LoginResponse.fromJson(body);
   } else {
     throw Exception(jsonDecode(response.body)['detail']);
   }
+}
+
+Future<bool> isAuth() async {
+  final accessToken = await storage.read(key: 'access_token');
+  return Future.value(accessToken != '');
 }
