@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mobile/screens/auth/login.dart';
 import 'package:mobile/screens/chats.dart';
 import 'package:mobile/screens/home.dart';
@@ -6,6 +7,9 @@ import 'package:mobile/screens/orders.dart';
 import 'package:mobile/screens/profile.dart';
 
 import 'tabs.dart';
+
+const baseURL = 'https://nishanttheprogrammer.pythonanywhere.com/api';
+final storage = FlutterSecureStorage();
 
 void main() {
   runApp(MyApp());

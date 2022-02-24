@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:mobile/main.dart';
 import 'package:mobile/models/gig.dart';
 import 'package:mobile/providers/gig_provider.dart' as gig_provider;
 import 'package:mobile/widgets/gig_card.dart';
@@ -22,6 +23,10 @@ class _HomeState extends State<Home> {
       setState(() {
         this.gigs = gigs;
       });
+    });
+
+    storage.read(key: 'access_token').then((accessToken) {
+      print(accessToken);
     });
 
     super.initState();
