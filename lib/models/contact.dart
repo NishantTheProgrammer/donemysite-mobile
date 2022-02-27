@@ -1,13 +1,13 @@
 class Contact {
   final int id;
   final String username;
-  final String lastMessage;
+  String? lastMessage;
   String? picture;
 
   Contact({
     required this.id,
     required this.username,
-    required this.lastMessage,
+    this.lastMessage,
     this.picture,
   });
 

@@ -6,7 +6,7 @@ import 'auth/login.dart';
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
 
-  final routeName = 'profile';
+  static const routeName = 'profile';
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class Profile extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, Login().routeName);
+              Navigator.pushNamed(context, Login.routeName);
             },
             child: Text('Login'),
           )

@@ -8,7 +8,7 @@ import 'package:mobile/widgets/gig_card.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
-  final routeName = 'home';
+  static const routeName = 'home';
 
   @override
   State<Home> createState() => _HomeState();
@@ -30,16 +30,13 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return GridView.count(
       padding: const EdgeInsets.all(8.0),
-      child: GridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: 4.0,
-        mainAxisSpacing: 4.0,
-        childAspectRatio: MediaQuery.of(context).size.width /
-            (MediaQuery.of(context).size.height / 1.31),
-        children: gigs.map((gig) => GigCard(gig)).toList(),
-      ),
+      crossAxisCount: 2,
+      crossAxisSpacing: 4.0,
+      mainAxisSpacing: 4.0,
+      childAspectRatio: 8.0 / 12.5,
+      children: gigs.map((gig) => GigCard(gig)).toList(),
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:mobile/providers/auth_provider.dart' as auth_provider;
 import 'package:mobile/screens/profile.dart';
 
 class Login extends StatefulWidget {
-  final routeName = 'login';
+  static const routeName = 'login';
 
   const Login({Key? key}) : super(key: key);
 
@@ -47,7 +47,7 @@ class _LoginState extends State<Login> {
         );
 
         Navigator.pushNamedAndRemoveUntil(
-            context, Profile().routeName, (_) => false);
+            context, Profile.routeName, (_) => false);
       }).catchError((error, stackTrace) {
         if ('$error' != '') {
           FocusScope.of(context).requestFocus(FocusNode());

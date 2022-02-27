@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mobile/models/contact.dart';
 
 import 'package:mobile/providers/chat_provider.dart' as chat_provider;
+import 'package:mobile/screens/chat_details.dart';
 
 class Chats extends StatefulWidget {
-  final routeName = 'chats';
+  static const routeName = 'chats';
 
   const Chats({Key? key}) : super(key: key);
 
@@ -25,6 +26,10 @@ class _ChatsState extends State<Chats> {
     super.initState();
   }
 
+  openChat(Contact contact) {
+    Navigator.of(context).pushNamed(ChatDetails.routeName, arguments: contact);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -37,19 +42,22 @@ class _ChatsState extends State<Chats> {
           ...contacts
               .map(
                 (contact) => Card(
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.red[700],
-                      child: Text(
-                        contact.username[0],
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w300,
+                  child: InkWell(
+                    onTap: () => openChat(contact),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.red[700],
+                        child: Text(
+                          contact.username[0],
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                          ),
                         ),
                       ),
+                      title: Text(contact.username),
+                      subtitle: Text(contact.lastMessage ?? ''),
                     ),
-                    title: Text(contact.username),
-                    subtitle: Text(contact.lastMessage),
                   ),
                 ),
               )
